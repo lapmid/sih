@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root to: 'home#index'
   get '/policy', to: 'home#policy', as: 'policy'
   resources :authentications, only: [:destroy]
+  resources :user_details, only: [:index]
 end

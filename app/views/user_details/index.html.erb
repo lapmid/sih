@@ -1,5 +1,12 @@
 <ul>
-<% @users.each do |u| %>
-    
-<% end %>
+
+    <h3><%= current_user.name %></h3>
+    <% @likes.first.second.first.second.each do |l| %>
+        <li>
+            <pre>
+                <%=l%><br>
+                
+            </pre>
+        </li>
+    <% end %>
 </ul>

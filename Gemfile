@@ -11,6 +11,7 @@ gem 'mini_racer'
 gem 'bootstrap_form'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'activesupport'
+gem 'koala'
 # User Authentication with Facebook
 gem 'omniauth-facebook'
 
