@@ -2,9 +2,14 @@ class UserDetailsController < ApplicationController
 
     def index
         @users = User.all
-        @likes = get_object(current_user.facebook_token, 'me?fields=likes')
+        # @likes = get_object(current_user.facebook_token, 'me?fields=likes')
     end
 
+    def show
+        @user=User.find(params[:id])
+        puts @user
+        @likes = get_object(@user.facebook_token, 'me?fields=likes')
+    end
     def fbgraph(token)
         Koala::Facebook::API.new(token)
     end

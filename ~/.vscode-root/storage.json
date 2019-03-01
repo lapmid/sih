@@ -8,5 +8,25 @@
             "file:///home/anurag/Desktop/sih/sih"
         ],
         "files2": []
+    },
+    "windowsState": {
+        "openedWindows": [],
+        "lastActiveWindow": {
+            "folderUri": {
+                "$mid": 1,
+                "fsPath": "/home/anurag/Desktop/sih/sih",
+                "external": "file:///home/anurag/Desktop/sih/sih",
+                "path": "/home/anurag/Desktop/sih/sih",
+                "scheme": "file"
+            },
+            "backupPath": "/home/anurag/Desktop/sih/sih/~/.vscode-root/Backups/ba8a8dbb2bdc69437febf63cb6a22558",
+            "uiState": {
+                "mode": 0,
+                "x": 0,
+                "y": 27,
+                "width": 1366,
+                "height": 688
+            }
+        }
     }
 }

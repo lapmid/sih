@@ -1,12 +1,8 @@
-<ul>
 
-    <h3><%= current_user.name %></h3>
-    <% @likes.first.second.first.second.each do |l| %>
+<ul>
+    <% @users.each do |u| %>
         <li>
-            <pre>
-                <%=l%><br>
-                
-            </pre>
+            <%= link_to u.name, show_user_details_path(@users, :id => u.id) %>
         </li>
     <% end %>
 </ul>

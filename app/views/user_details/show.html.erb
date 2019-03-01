@@ -1,0 +1,12 @@
+
+<ul>
+
+    <h3><%= @user.name %></h3>
+    <% @likes.first.second.first.second.each do |l| %>
+        <li>
+            <pre>
+                <%=l%><br>
+            </pre>
+        </li>
+    <% end %>
+</ul>

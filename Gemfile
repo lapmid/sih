@@ -5,7 +5,8 @@ ruby '2.5.1'
 gem 'devise'
 
 
-
+gem 'carrierwave'
+gem 'mini_magick'
 gem 'jquery-rails'
 gem 'mini_racer'
 gem 'bootstrap_form'

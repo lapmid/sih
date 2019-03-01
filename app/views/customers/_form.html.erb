@@ -1,0 +1,36 @@
+
+<%= form_with(model: customer, local: true) do |f| %>
+  <% if customer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
+
+      <ul>
+      <% customer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :age %><br>
+    <%= f.date_select  :age %>
+  </div>
+  <div class="field">
+
+    <%= f.label :photo %><br>
+    <%= f.file_field :photo %>
+    <% if f.object.photo? %>
+      <%= image_tag f.object.photo.url %>
+      <%= f.label :remove_photo %>
+      <%= f.check_box :remove_photo %> 
+    <% end %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
