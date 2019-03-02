@@ -10,12 +10,34 @@ class CustomersController < ApplicationController
   # GET /customers/1
   # GET /customers/1.json
   def show
+    cmd = 'sudo python /home/anurag/Desktop/Py/sih/test2.py "'+@customer.name+'" http://localhost:3000'+@customer.photo.url
+    puts "twice"
+    # output = `#{cmd}`
+    output=%x{#{cmd}}
+
+    if( output == nil )
+            @missing = "missing is NIL"
+    else
+            @missing = "The output of '#{cmd}' is [#{output}]"
+    end
   end
 
   # GET /customers/new
   def new
     @customer = Customer.new
   end
+
+  #
+  # def get_missed
+  #   cmd = 'python Desktop/Py/sih/test2.py "Ritika Tilwalia"'
+  #   output = `cmd`
+
+  #   if( output == nil )
+  #           @missing = "missing is NIL"
+  #   else
+  #           @missing = "The output of '#{cmd}' is [#{output}]"
+  #   end
+  # end
 
   # GET /customers/1/edit
   def edit

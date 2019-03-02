@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_01_173232) do
+ActiveRecord::Schema.define(version: 2019_03_01_184459) do
 
   create_table "customers", force: :cascade do |t|
     t.string "name"
@@ -18,6 +18,14 @@ ActiveRecord::Schema.define(version: 2019_03_01_173232) do
     t.string "photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.string "facebook"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "customer_id"
+    t.index ["customer_id"], name: "index_profiles_on_customer_id"
   end
 
   create_table "users", force: :cascade do |t|

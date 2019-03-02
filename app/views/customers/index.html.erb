@@ -15,7 +15,7 @@
   <tbody>
     <% @customers.each do |customer| %>
       <tr>
-        <td><%= image_tag customer.photo.url ,class:"img img-responsive"%></td>
+        <%# <td><%= image_tag customer.photo.url ,class:"img img-responsive"%></td> %>
         <td><%= customer.name %></td>
         <td><%= customer.age %></td>
         <td><%= customer.photo %></td>
