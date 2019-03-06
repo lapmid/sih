@@ -1,23 +1,38 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @customer.name %>
+<p id="notice">
+  <%= notice %>
 </p>
 
-<p>
-  <strong>Age:</strong>
-  <%= @customer.age %>
-</p>
+<div class="content">
+  <div class="photo">
+    <%= image_tag @customer.photo.url ,class:"img img-responsive"%>
+  </div>
 
-<p>
-  <strong>Photo:</strong>
-  <%= image_tag @customer.photo.url ,class:"img img-responsive"%>
-</p>
- 
-<p>
-  <%= @missing %>
-</p>
 
-<%= link_to 'Edit', edit_customer_path(@customer) %> |
-<%= link_to 'Back', customers_path %>
+  <div class="name">
+    <%= @customer.name %>
+  </div>
+
+
+  <div class="fp">
+    <strong>Facebook Profile</strong><br>
+    <%=link_to @missing.split(' ')[1] , @missing.split(' ')[1]  %> 
+  </div>
+
+  <div class="fp1">
+    <strong> Twitter Profile</strong><br>
+    <%=link_to @missing.split(' ')[0] , @missing.split(' ')[0]  %> 
+  </div>
+
+
+  <div class="fp2">
+    <strong>Linkedin Profile</strong><br>
+     
+  </div>
+
+</div>
+<br><br>
+<div class="row text-center">
+    <%=link_to 'Edit' , edit_customer_path(@customer),class:" btn btn-info" %>
+    <%=link_to 'Back' , customers_path, class:" btn btn-info" %>
+</div>
+

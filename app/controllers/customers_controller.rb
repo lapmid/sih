@@ -1,6 +1,7 @@
+require 'twitter'
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /customers
   # GET /customers.json
   def index
@@ -10,34 +11,29 @@ class CustomersController < ApplicationController
   # GET /customers/1
   # GET /customers/1.json
   def show
-    cmd = 'sudo python /home/anurag/Desktop/Py/sih/test2.py "'+@customer.name+'" http://localhost:3000'+@customer.photo.url
-    puts "twice"
+    cmd = 'sudo python sih/test2.py "'+@customer.name+'" '+@customer.photo.url
+    # puts cmd
     # output = `#{cmd}`
     output=%x{#{cmd}}
-
-    if( output == nil )
-            @missing = "missing is NIL"
-    else
-            @missing = "The output of '#{cmd}' is [#{output}]"
-    end
+    @missing = "#{output}"
+    
   end
+
+  
+
+  def get_twitter_users
+    @clients=get_users("manthan")
+      # format.json { render json: json_format(@clients),status: :created }
+    render json: {status: 'SUCCESS', message: 'Loaded all posts', data: @clients}, status: :ok
+    
+  end
+
+  
 
   # GET /customers/new
   def new
     @customer = Customer.new
   end
-
-  #
-  # def get_missed
-  #   cmd = 'python Desktop/Py/sih/test2.py "Ritika Tilwalia"'
-  #   output = `cmd`
-
-  #   if( output == nil )
-  #           @missing = "missing is NIL"
-  #   else
-  #           @missing = "The output of '#{cmd}' is [#{output}]"
-  #   end
-  # end
 
   # GET /customers/1/edit
   def edit
@@ -52,6 +48,8 @@ class CustomersController < ApplicationController
       if @customer.save
         format.html { redirect_to customers_url, notice: 'Customer was successfully created.' }
         format.json { render :index, status: :created, location: customers_url }
+        flash[:notice] = "Doubt was successfully Posted You Will Be Contacted Soon By Our Support Team."
+        flash[:success] = "If need Instant help Drop A Message With Your Name On Bottom Right Corner"
       else
         format.html { render :new }
         format.json { render json: @customer.errors, status: :unprocessable_entity }
@@ -64,8 +62,8 @@ class CustomersController < ApplicationController
   def update
     respond_to do |format|
       if @customer.update(customer_params)
-        format.html { redirect_to @customer, notice: 'Customer was successfully updated.' }
-        format.json { render :show, status: :ok, location: @customer }
+        format.html { redirect_to customers_url, notice: 'Customer was successfully updated.' }
+        format.json { render :index, status: :ok, location: customers_url }
       else
         format.html { render :edit }
         format.json { render json: @customer.errors, status: :unprocessable_entity }
@@ -84,11 +82,14 @@ class CustomersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_customer
+  # Use callbacks to share common setup or constraints between actions.
+  def set_customer
       @customer = Customer.find(params[:id])
-    end
-
+  end
+  private
+  def get_users(userName)
+    MyTwitter.user_search(userName)
+  end
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
       params.require(:customer).permit(:name, :age, :photo,:remove_image)

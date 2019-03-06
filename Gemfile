@@ -13,6 +13,9 @@ gem 'bootstrap_form'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'activesupport'
 gem 'koala'
+gem 'figaro'
+gem 'twitter'
+gem 'noty-rails'
 # User Authentication with Facebook
 gem 'omniauth-facebook'
 
