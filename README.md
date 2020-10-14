@@ -1,24 +1,7 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A web app which finds people on different social media sites using only a passport size photo
 
-Things you may want to cover:
+and name of the person, the app uses ruby on rails for web app,python and its libraries like face recognition
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+and beautiful soup etc for scripting.
