@@ -51,7 +51,7 @@ def reco_linked(source,base):
 
     match=False
     for face_encoding in face_encodings:
-        matches = face_recognition.compare_faces([pe1], face_encoding, tolerance=0.50)
+        matches = face_recognition.compare_faces([pe1], face_encoding, tolerance=0.475)
         if True in matches:
             match=True
             break
@@ -90,7 +90,7 @@ def reco_deep(u2):
 
 def reco(u2,base):
     # '/home/anurag/Desktop/Py/sih/Samples/base_photo.jpg'
-    p1 = face_recognition.load_image_file("public"+base)
+    p1 = face_recognition.load_image_file(base)
     pe1 = face_recognition.face_encodings(p1)[0] 
 
     # urlretrieve(u2, "/home/anurag/Desktop/Py/sih/Samples/main_base.jpg")
@@ -125,18 +125,18 @@ def about_page(source,base):
     user_id= abt_soup.find_all("meta",{"property":"al:android:url"})[0].get("content",None).split('/')[3]
     image="https://graph.facebook.com/"+user_id+"/picture?type=large&width=720&height=720"
     
-    urlretrieve(image, "sih/Samples/"+user_id+".jpg")
-    if reco("sih/Samples/"+user_id+".jpg",base) is True:
+    urlretrieve(image, "/home/bhavik/Documents/my_sam/"+user_id+".jpg")
+    if reco("/home/bhavik/Documents/my_sam/"+user_id+".jpg",base) is True:
         # ans.append(source)
         global ans
         ans=source
         print source
-        if os.path.isfile("sih/Samples/"+user_id+".jpg"):
-            os.remove("sih/Samples/"+user_id+".jpg") 
+        if os.path.isfile("/home/bhavik/Documents/my_sam/"+user_id+".jpg"):
+            os.remove("/home/bhavik/Documents/my_sam/"+user_id+".jpg") 
         return True
 
-    if os.path.isfile("sih/Samples/"+user_id+".jpg"):
-            os.remove("sih/Samples/"+user_id+".jpg") 
+    if os.path.isfile("/home/bhavik/Documents/my_sam/"+user_id+".jpg"):
+            os.remove("/home/bhavik/Documents/my_sam/"+user_id+".jpg") 
     return False
 
 def linked_in(Query,base):
@@ -193,6 +193,23 @@ def WebWork(Query,base):
     driver.get('https://www.facebook.com/public/'+Query)
     # username_box = driver.find_element_by_id('email')
     # password_box = driver.find_element_by_id('pass')
+    SCROLL_PAUSE_TIME = 1	
+
+    # Get scroll height
+    last_height = driver.execute_script("return document.body.scrollHeight")
+
+    while True:
+    	# Scroll down to bottom
+    	driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+
+    	# Wait to load page
+    	time.sleep(SCROLL_PAUSE_TIME)
+
+    	# Calculate new scroll height and compare with last scroll height
+    	new_height = driver.execute_script("return document.body.scrollHeight")
+    	if new_height == last_height:
+        	break
+    	last_height = new_height
 
     
     
@@ -257,7 +274,7 @@ if True:
     # options.add_argument("--user-data-dir=/home/anurag/.config/google-chrome/")
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
-    driver = webdriver.Chrome(chrome_options=options)
+    driver = webdriver.Chrome(chrome_options=options,executable_path='/home/bhavik/Documents/chromedriver')
     WebWork(param1,param2)
 
     # linked_in(param1+" Future",param2)
